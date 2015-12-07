@@ -1,6 +1,18 @@
-(ns alfa.core)
+(ns alfa.core
+  (:require
+    [clojure.set :as st :refer [union difference intersection]]
+    [clojure.string :as cs :refer [split-lines]]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defn prime?
+  [^long p]
+  (cond
+    (< p 2) false
+    (== p 2) true
+    (even? p) false
+    :else (->> (range 3 (inc (int (Math/sqrt p))) 2)
+               (map #(rem p %))
+               (every? pos?))))
+
+
+
+
